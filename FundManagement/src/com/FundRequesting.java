@@ -125,7 +125,7 @@ public class FundRequesting {
 	             
 	             // buttons
 	             output += "<td><input name='btnUpdate' type='button' value='Update'  class=' btnUpdate btn btn-secondary'></td> "
-	             		+ "<td><form method='post' action='items.jsp'> "
+	             		+ "<td><form method='post' action='fundManagement.jsp'> "
 	             		+ "<input name='btnRemove' type='submit'  value='Remove' class='btn btn-danger'>"
 	             		+ "<input name='hidItemIDDelete' type='hidden'  value='" + r_ID + "'>" + "</form></td></tr>"; 
 	      } 
