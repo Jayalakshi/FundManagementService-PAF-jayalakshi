@@ -91,7 +91,9 @@ public class FundRequesting {
 	      "<th>rPhoneNum</th>" +
 	      "<th>projName</th>" +
 	      "<th>projDesc</th>" +
-	      "<th>fund</th></tr>"; 
+	      "<th>fund</th>"
+	      + "<th>Update</th>"
+	      + "<th>Remove</th></tr>"; 
 	 
 	      String query = "select * from researcher"; 
 	      Statement stmt = con.createStatement(); 
@@ -110,8 +112,7 @@ public class FundRequesting {
 	             String fund = Double.toString(rs.getDouble("fund")); 
 	           
 	             // Add into the html table
-	             output += "<tr><td>" + r_ID + "</td>"; 
-	             output += "<td>" + r_name + "</td>"; 
+	             output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + r_ID + "'>" + r_name + "</td>"; 
 	             output += "<td>" + r_age + "</td>"; 
 	             output += "<td>" + r_address + "</td>"; 
 	             output += "<td>" + r_email + "</td>"; 
@@ -121,7 +122,10 @@ public class FundRequesting {
 	             output += "<td>" + fund + "</td></tr>";
 	             
 	             // buttons
-	            // output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"+ "<td><form method='post' action='items.jsp'>"+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"+ "<input name='itemID' type='hidden' value='" + itemID + "'>" + "</form></td></tr>"; 
+	             output += "<td><input name='btnUpdate' type='button' value='Update'  class=' btnUpdate btn btn-secondary'></td> "
+	             		+ "<td><form method='post' action='items.jsp'> "
+	             		+ "<input name='btnRemove' type='submit'  value='Remove' class='btn btn-danger'>"
+	             		+ "<input name='hidItemIDDelete' type='hidden'  value='" + r_ID + "'>" + "</form></td></tr>"; 
 	      } 
 	      con.close(); 
 	      // Complete the html table
