@@ -96,7 +96,20 @@ $(document).on("click", "#btnSave", function(event)
 	}
 	
 	// If valid------------------------
-	$("#btnSave").submit();
+	var type = ($("#hidItemIDSave").val() == "") ? "POST" : "PUT";
+
+	$.ajax( 
+	{ 
+	url : "FundManagementAPI", 
+	type : type, 
+	data : $("#formResearcher").serialize(), 
+	dataType : "text", 
+	complete : function(response, status) 
+	{ 
+	onItemSaveComplete(response.responseText, status); 
+	} 
+	});
+	
 });
 
 //UPDATE==========================================
@@ -114,6 +127,28 @@ $(document).on("click", ".btnUpdate", function(event)
 	$("#fund").val($(this).closest("tr").find('td:eq(8)').text());
 	
 });
+
+//DELETE====================================================
+$(document).on("click", ".btnRemove", function(event)
+{ 
+console.log($("#formResearcher").serialize());
+
+ 
+
+ $.ajax( 
+ { 
+ url : "FundManagementAPI", 
+ type : "DELETE", 
+ data : "rID=" + $(this).data("rID"),
+ dataType : "text", 
+ complete : function(response, status) 
+ { 
+ onItemDeleteComplete(response.responseText, status); 
+ } 
+
+ 
+
+ }); 
 
 
 // CLIENT-MODEL================================================================
@@ -169,7 +204,7 @@ function validateForm()
 	
 	
 	return true;
-}
+}}
 
 </script>
 
@@ -217,6 +252,7 @@ function validateForm()
          <input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
      </form>
      
+   
   
    <div id="alertSuccess" class=alert alert-success>
      <%
@@ -225,7 +261,15 @@ function validateForm()
    
      %>
    
-   </div>
+   </div> <br>
+   
+   <div id="divProductGrid">
+    <%
+        FundRequesting fObj = new FundRequesting();
+        out.print(fObj.readFundReqs());
+    %>
+    </div>
+   
    <div id="alertError" class=alert alert-danger>
    <br>
       <%
@@ -233,7 +277,6 @@ function validateForm()
              out.print(session.getAttribute("statusMsg"));
    
      %>
-   <%--jede --%>
    
    </div>
    

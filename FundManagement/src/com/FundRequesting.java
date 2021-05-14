@@ -83,17 +83,19 @@ public class FundRequesting {
 	            	         
 	              } 
 	      // Prepare the html table to be displayed
-	      output = "<table border='1'><tr><th>rID</th>" +
-	      "<th>rName</th>" + 
-	      "<th>rAge</th>" + 
-	      "<th>rAddress</th>" +
-	      "<th>rEmail</th>" +
-	      "<th>rPhoneNum</th>" +
-	      "<th>projName</th>" +
-	      "<th>projDesc</th>" +
-	      "<th>fund</th>"
-	      + "<th>Update</th>"
-	      + "<th>Remove</th></tr>"; 
+	      output = "<table border='1'><tr>"
+	     + "  <thead>"
+	      + "<th scope='col'>rName</th>" + 
+	      "<th scope='col'>rAge</th>" + 
+	      "<th scope='col'>rAddress</th>" +
+	      "<th scope='col'>rEmail</th>" +
+	      "<th scope='col'>rPhoneNum</th>" +
+	      "<th scope='col'>projName</th>" +
+	      "<th scope='col'>projDesc</th>" +
+	      "<th scope='col'>fund</th>"
+	      + "<th scope='col colspan='2'>Update/Remove</th>"
+	      + "</tr>"
+	      + "  </thead>"; 
 	 
 	      String query = "select * from researcher"; 
 	      Statement stmt = con.createStatement(); 
